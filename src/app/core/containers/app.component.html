@@ -1,0 +1,25 @@
+<js-layout>
+  <js-sidenav [open]="showSidenav$ | async" (closeMenu)="closeSidenav()">
+    
+    <js-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn$ | async" routerLink="/" icon="book" hint="View your book collection">
+      My Collection
+    </js-nav-item>
+    
+    <js-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn$ | async" routerLink="/books/find" icon="search" hint="Find your next book!">
+      Browse Books
+    </js-nav-item>
+    
+    <js-nav-item (navigate)="closeSidenav()" *ngIf="!(loggedIn$ | async)">
+      Sign In
+    </js-nav-item>
+    
+    <js-nav-item (navigate)="logout()" *ngIf="loggedIn$ | async">
+      Sign Out
+    </js-nav-item>
+  </js-sidenav>
+  <js-toolbar (openMenu)="openSidenav()">
+    Book Collection
+  </js-toolbar>
+
+  <router-outlet></router-outlet>
+</js-layout>
